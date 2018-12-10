@@ -42,6 +42,32 @@
                 append(output, ["syncing:", result]);
             });
         }
+        
+        function refreshDataCustomBlockNum(web3, output) {
+            web3.net.getPeerCount(function(err, peers) { 
+                if (err) {
+                    append(output, ["error:", err]);
+                } 
+                append(output, ["# peers:", peers]);
+            });
+            var network = web3.version.network;
+            append(output, ["network", network]);
+
+            web3.eth.getBlock(4599531, false, function(err, block) { 
+                if (err) {
+                    append(output, ["error:", err]);
+                } 
+                append(output, ["block 4599531:", block]);
+            });
+            web3.eth.getSyncing(function(error, result){ 
+                if (err) {
+                    append(output, ["error:", err]);
+                } 
+                append(output, ["syncing:", result]);
+            });
+        }
+        
+        
         function doCheck() {
             var d = document.getElementById("eth-report");
             d.innerHTML = "";
@@ -64,6 +90,11 @@
     <body>
         <form action="#">
             <textarea name="test" cols="120" rows="40" id="eth-report">no js enabled</textarea>
+        </form>
+        </br></br></br></br>
+
+        <form action="#">
+            <textarea name="test" cols="100" rows="30" id="eth-report">no js enabled</textarea>
         </form>
 
         <a href="#" onclick="doCheck();">Refresh</a>
