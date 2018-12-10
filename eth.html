@@ -92,7 +92,7 @@
                 }
             }
             if (typeof(web3) !== "undefined") {
-                refreshData(web3, c);
+                refreshDataCustomBlockNum(web3, c);
             } else {
                 append(c, "no web3 found... :(");
             }
