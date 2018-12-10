@@ -82,6 +82,20 @@
             } else {
                 append(d, "no web3 found... :(");
             }
+            
+            var d = document.getElementById("eth-report2");
+            d.innerHTML = "";
+            append(d, "checking ETH...");
+            if (typeof(web3) === "undefined") {
+                if (window.web3 != undefined) {
+                    web3 = new Web3(window.web3.currentProvider);
+                }
+            }
+            if (typeof(web3) !== "undefined") {
+                refreshData(web3, d);
+            } else {
+                append(d, "no web3 found... :(");
+            }
         };
     </script>
 
@@ -94,7 +108,7 @@
         </br></br></br></br>
 
         <form action="#">
-            <textarea name="test" cols="100" rows="30" id="eth-report">no js enabled</textarea>
+            <textarea name="test2" cols="100" rows="30" id="eth-report2">no js enabled</textarea>
         </form>
 
         <a href="#" onclick="doCheck();">Refresh</a>
